@@ -29,7 +29,6 @@ public class FramesTestWithTrace extends BaseTest {
 
     @Test
     void should_switch_between_iframes_with_trace_mechanism() {
-
         page.navigate("http://automation-practice.emilos.pl/iframes.php");
         Frame frameShortForm = page.frame("iframe1");
         frameShortForm.getByPlaceholder("First name").fill("Magdalena");
