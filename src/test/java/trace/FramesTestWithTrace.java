@@ -1,4 +1,4 @@
-package playwrightDemo;
+package trace;
 
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Frame;
@@ -6,6 +6,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Tracing;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.SelectOption;
+import compareWithSelenium.BaseTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,18 +1,27 @@
-package playwrightDemo;
+package extra;
 
-import com.microsoft.playwright.Frame;
-import com.microsoft.playwright.Page;
+import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.SelectOption;
+import compareWithSelenium.BaseTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
 
-public class FramesTestWithScreenshots extends BaseTest {
-    Page page = getBrowser().newPage();
+public class FramesTestWithVideo extends BaseTest {
+    BrowserContext context;
+    Page page;
+
+    @BeforeEach
+    public void setUpTest() {
+        context = getBrowser().newContext(new Browser.NewContextOptions().setRecordVideoDir(Paths.get("videos/")));
+        page = context.newPage();
+    }
 
     @Test
-    void should_switch_between_iframes_and_take_screenshots() {
+    void should_switch_between_iframes() {
         page.navigate("http://automation-practice.emilos.pl/iframes.php");
         fillShortForm("Magdalena", "Tyszkiewicz");
         fillExtendedForm("magda", "admin", "europe", "3");
@@ -22,8 +31,6 @@ public class FramesTestWithScreenshots extends BaseTest {
         Frame frameShortForm = page.frame("iframe1");
         frameShortForm.getByPlaceholder("First name").fill(firstName);
         frameShortForm.getByPlaceholder("Surname").fill(surname);
-        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("shortForm.png")));
-
         frameShortForm.getByRole(AriaRole.BUTTON).click();
     }
 
@@ -33,9 +40,12 @@ public class FramesTestWithScreenshots extends BaseTest {
         frameExtendedForm.getByPlaceholder("Password").fill(password);
         frameExtendedForm.locator(".custom-select").selectOption(new SelectOption().setValue(continentOptionValue));
         frameExtendedForm.getByLabel(experienceOptionId).click();
-        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("extendedForm.png")));
-
         frameExtendedForm.getByRole(AriaRole.BUTTON).click();
+    }
+
+    @AfterEach
+    public void tearDownTest() {
+        context.close();
     }
 
 }

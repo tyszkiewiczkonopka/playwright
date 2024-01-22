@@ -14,7 +14,7 @@
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
-            <version>1.40.0</version>
+            <version>1.41.0</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -29,7 +29,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
-                <!-- References to interface static methods are allowed only at source level 1.8 or above -->
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

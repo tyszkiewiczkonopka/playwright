@@ -1,4 +1,4 @@
-package playwrightDemo;
+package compareWithSelenium;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
